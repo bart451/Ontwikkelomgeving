@@ -13,16 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Example Routes
+Route::view('/', 'blank');
+Route::match(['get', 'post'], '/dashboard', function(){
+    return view('blank');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::view('/pages/overzicht', 'pages.overzicht');
 Route::view('/pages/nieuwsbrief', 'pages.nieuwsbrief');
 Route::view('/pages/bewerknieuwsbrief', 'pages.bewerknieuwsbrief');
-require __DIR__.'/auth.php';
-

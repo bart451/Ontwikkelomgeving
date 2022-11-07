@@ -1,4 +1,6 @@
-<x-app-layout>
+@extends('layouts.backend')
+
+@section('content')
 
     <!-- Hero -->
     <div class="bg-body-light">
@@ -116,4 +118,4 @@
         <!-- END Your Block -->
     </div>
     <!-- END Page Content -->
-</x-app-layout>
+@endsection
