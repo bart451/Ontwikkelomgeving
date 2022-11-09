@@ -13,14 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Example Routes
+// Dashboard
 Route::view('/', 'blank');
-Route::match(['get', 'post'], '/dashboard', function(){
+Route::match(['get', 'post'], '/dashboard', function () {
     return view('blank');
 });
 
+//// Route voor het aanmaken van een nieuwsbrief
+Route::get('/pages/nieuwsbrief', [\App\Http\Controllers\NieuwsbriefController::class, 'getData'])->name('pages.nieuwsbrief');
 
-
-Route::view('/pages/overzicht', 'pages.overzicht');
-Route::view('/pages/nieuwsbrief', 'pages.nieuwsbrief');
+//// Route voor het bewerken van een nieuwsbrief
 Route::view('/pages/bewerknieuwsbrief', 'pages.bewerknieuwsbrief');
+
+// Route voor Nieuwsbrieven overzicht
+Route::get('/pages/overzicht', [\App\Http\Controllers\NieuwsbriefController::class, 'index'])->name('pages.overzicht');
+
