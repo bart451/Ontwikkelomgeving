@@ -12,7 +12,7 @@ return new class extends Migration {
      */
     public function up()
     {
-        Schema::create('nieuwsbriefs', function (Blueprint $table) {
+        Schema::create('nieuwsbrieven', function (Blueprint $table) {
             $table->id();
             $table->string('naam');
             $table->string('afzender');
@@ -21,7 +21,6 @@ return new class extends Migration {
             $table->datetime('verzenddatum')->nullable();
             $table->datetime('verzondendatum')->nullable();
             $table->enum('status', ['nieuw', 'wachtrij', 'verzonden']);
-//            $table->unsignedBigInteger('template_id');
             $table->foreignId('template_id')->references('id')->on('templates')->onDelete('cascade');
             $table->text('inhoud');
             $table->string('created_by');

@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             TemplateSeeder::class,
             NieuwsbriefSeeder::class,
             TestDataSeeder::class,
+            MedewerkerSeeder::class,
+            MedewerkerNieuwsbriefSeeder::class,
         ]);
     }
 }

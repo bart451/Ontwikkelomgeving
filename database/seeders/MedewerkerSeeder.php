@@ -2,13 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Nieuwsbrief;
-use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class NieuwsbriefSeeder extends Seeder
+class MedewerkerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,11 +16,6 @@ class NieuwsbriefSeeder extends Seeder
     {
         $max = 20;
         for($c=1; $c<=$max; $c++) {
-            Nieuwsbrief::factory()->create();
-        }
-
-//        \App\Models\Nieuwsbrief::factory(11)->create();
-    }
+            \App\Models\Medewerker::factory()->create();
+        }    }
 }
-
-

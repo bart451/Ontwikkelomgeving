@@ -10,13 +10,13 @@ use Illuminate\Support\Facades\Session;
 
 class NieuwsbriefController extends Controller
 {
-//    public function index(Request $request)
-//    {
-//        $nieuwsbrieven = Nieuwsbrief::all();
-//        return view('pages.overzicht', [
-//            'nieuwsbrieven' => $nieuwsbrieven
-//        ]);
-//    }
+    public function index(Request $request)
+    {
+        $nieuwsbrieven = Nieuwsbrief::all();
+        return view('pages.overzicht', [
+            'nieuwsbrieven' => $nieuwsbrieven
+        ]);
+    }
     public function save() {
         $data = Nieuwsbrief::hasData();
         return view('pages.overzicht', [
@@ -33,7 +33,7 @@ class NieuwsbriefController extends Controller
         Session::save();
 
         $data = array('naam'=>$onderwerp, 'template_id'=>$template, 'afzender'=>$afzender, 'email'=>$email);
-        DB::table('nieuwsbriefs')->insert($data);
+        DB::table('nieuwsbrieven')->insert($data);
         return view('pages.overzicht');
     }
 }

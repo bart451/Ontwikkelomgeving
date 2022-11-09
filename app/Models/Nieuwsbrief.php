@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 class Nieuwsbrief extends Model
 {
     use HasFactory;
-
+    protected $table = 'nieuwsbrieven';
     public function hasData() {
         $onderwerp = Session::get('naam');
         $template = Session::get('template_id');

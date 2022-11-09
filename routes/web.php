@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\NieuwsbriefController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +21,12 @@ Route::match(['get', 'post'], '/dashboard', function () {
 });
 
 //// Route voor het aanmaken van een nieuwsbrief
-Route::get('/pages/nieuwsbrief', [\App\Http\Controllers\NieuwsbriefController::class, 'getData'])->name('pages.nieuwsbrief');
+//Route::get('/pages/nieuwsbrief', [\App\Http\Controllers\NieuwsbriefController::class, 'getData'])->name('pages.nieuwsbrief');
+Route::view('/pages/nieuwsbrief', 'pages.nieuwsbrief');
 
 //// Route voor het bewerken van een nieuwsbrief
 Route::view('/pages/bewerknieuwsbrief', 'pages.bewerknieuwsbrief');
 
 // Route voor Nieuwsbrieven overzicht
-Route::get('/pages/overzicht', [\App\Http\Controllers\NieuwsbriefController::class, 'index'])->name('pages.overzicht');
+Route::get('/pages/overzicht', [NieuwsbriefController::class, 'index'])->name('pages.overzicht');
 
