@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,16 +12,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('nieuwsbrieven', function (Blueprint $table) {
+        Schema::create('nieuwsbriefs', function (Blueprint $table) {
             $table->id();
             $table->string('naam');
             $table->string('afzender');
             $table->string('email')->unique();
-            $table->foreignId('template_id');
             $table->enum('leesbevestiging', ['nee', 'ja']);
-            $table->date('created_at');
             $table->datetime('verzenddatum')->nullable();
-            $table->foreignId('contact');
+            $table->datetime('verzondendatum')->nullable();
+            $table->enum('status', ['nieuw', 'wachtrij', 'verzonden']);
+//            $table->unsignedBigInteger('template_id');
+            $table->foreignId('template_id')->references('id')->on('templates')->onDelete('cascade');
+            $table->text('inhoud');
+            $table->string('created_by');
+            $table->date('created_at');
+            $table->datetime('updated_at');
+            $table->datetime('deleted_at');
         });
     }
 
@@ -33,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('nieuwsbrieven');
+        Schema::dropIfExists('nieuwsbriefs');
     }
 };
