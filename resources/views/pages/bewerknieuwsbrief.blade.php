@@ -31,13 +31,12 @@
 
     <!-- Page Content -->
     <div class="content">
-        <!-- Your Block -->
+        <form method="POST" name="pages.nieuwsbrief" id="pages.nieuwsbrief" action="{{url('bewerknieuwsbrief')}}">
         <div class="block-content">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-floating mb-4">
-                        <input type="text" class="form-control" id="example-text-input-floating"
-                               name="example-text-input-floating" placeholder="John Doe">
+                        <input type="text" class="form-control" id="naam" name="naam" value="{{ $nieuwsbrief->naam }}">
                         <label for="example-text-input-floating">Onderwerp</label>
                     </div>
                 </div>
@@ -109,9 +108,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <button type="button" class="btn btn-alt-primary me-1 mb-3">
-                        <i class="fa fa-fw fa-plus me-1"></i> <a href="/dashboard">Bewerk Nieuwsbrief</a>
-                    </button>
+                    <button type="submit" class="btn btn-primary">Bewerk</button>
                 </div>
             </div>
         </div>

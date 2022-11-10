@@ -76,7 +76,7 @@
             </div>
             <div class="block-content block-content-full">
                 <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                <table class="table table-bordered table-striped table-vcenter js-dataTable-full fs-sm">
+                <table data-paging='false' class="table table-bordered table-striped table-vcenter js-dataTable-full fs-sm" style="width:100%">
                     <thead>
                     <tr>
                         <th class="text-center" style="width: 80px;">#</th>

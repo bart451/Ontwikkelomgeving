@@ -10,6 +10,9 @@ class pageTablesDatatables {
    * Init DataTables functionality
    *
    */
+
+
+
   static initDataTables() {
     // Override a few default classes
     jQuery.extend(jQuery.fn.DataTable.ext.classes, {

@@ -27,30 +27,29 @@
         </div>
     </div>
     <!-- END Hero -->
+<script type="text/javascript">
 
+</script>
     <!-- Page Content -->
     <div class="content">
-{{--        <form action="{{ route('bewerknieuwsbrief') }}" method="POST">--}}
-{{--            @csrf--}}
-            <!-- Your Block -->
+        <form method="POST" name="pages.nieuwsbrief" id="pages.nieuwsbrief" action="{{url('storenieuwsbrief')}}">
+            @csrf
             <div class="block-content">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-4">
-                            <input type="text" class="form-control" id="example-text-input-floating"
-                                   name="example-text-input-floating" placeholder="John Doe">
+                            <input type="text" class="form-control" id="naam" name="naam">
                             <label for="example-text-input-floating">Onderwerp</label>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="form-floating mb-4">
-                            <select class="form-select" id="example-select-floating" name="example-select-floating"
+                            <select class="form-select" id="template_id" name="template_id"
                                     aria-label="Floating label select example">
-                                <option selected="">Selecteer een optie</option>
-                                <option value="1">Template_1</option>
-                                <option value="2">Template_2</option>
-                                <option value="3">Template_3</option>
+                                <option selected="">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
                             </select>
                             <label for="example-select-floating">Template</label>
                         </div>
@@ -59,10 +58,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-floating mb-4">
-                            <select class="form-select" id="example-select-floating" name="example-select-floating"
+                            <select class="form-select" id="afzender" name="afzender"
                                     aria-label="Floating label select example">
-                                <option selected="">Selecteer een optie</option>
-                                <option value="1">Bart1</option>
+                                <option selected="">Bart1</option>
                                 <option value="2">Bart2</option>
                                 <option value="3">Bart3</option>
                             </select>
@@ -71,19 +69,14 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-floating mb-4">
-                            <input type="email" class="form-control" id="example-email-input-floating"
-                                   name="example-email-input-floating" placeholder="john.doe@example.com">
+                            <input type="email" class="form-control" id="email" name="email">
                             <label for="example-email-input-floating">Email</label>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-alt-primary me-1 mb-3" id=""
-                        onclick="event.preventDefault(); this.form.submit();">
-                    <i></i> Bewerk Nieuwsbrief
-                </button>
+                <button type="submit" class="btn btn-primary">Maak de nieuwsbrief aan</button>
             </div>
-{{--        </form>--}}
-        <!-- END Your Block -->
+        </form>
     </div>
     <!-- END Page Content -->
 @endsection

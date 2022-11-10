@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Nieuwsbrief;
-use App\Models\NieuwsbriefSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -13,27 +12,48 @@ class NieuwsbriefController extends Controller
     public function index(Request $request)
     {
         $nieuwsbrieven = Nieuwsbrief::all();
-        return view('pages.overzicht', [
-            'nieuwsbrieven' => $nieuwsbrieven
-        ]);
+        return view('pages.overzicht', compact('nieuwsbrieven'), ['nieuwsbrieven' => $nieuwsbrieven]);
     }
-    public function save() {
-        $data = Nieuwsbrief::hasData();
-        return view('pages.overzicht', [
-            'data' => $data
-        ]);
+
+    public function create()
+    {
+        return view('pages.nieuwsbrief');
     }
-    public function getData(Request $request) {
-        $onderwerp = $request->input('naam');
-        $template = $request->input('template_id');
-        $afzender = $request->input('afzender');
-        $email = $request->input('email');
 
-        Session::put($onderwerp, $template, $afzender, $email);
-        Session::save();
+    public function store(Request $request)
+    {
+        $nieuwsbrieven = Nieuwsbrief::create([
+            'naam' => $request->naam,
+            'afzender' => $request->afzender,
+            'email' => $request->email,
+            'template_id' => $request->template_id,
+        ]);
+        return redirect('pages/bewerknieuwsbrief')->with('success');
+    }
 
-        $data = array('naam'=>$onderwerp, 'template_id'=>$template, 'afzender'=>$afzender, 'email'=>$email);
-        DB::table('nieuwsbrieven')->insert($data);
-        return view('pages.overzicht');
+    public function edit($id)
+    {
+        $nieuwsbrieven = Nieuwsbrief::find($id);
+        return view('pages.bewerknieuwsbrief', compact('nieuwsbrieven'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $nieuwsbrieven = Nieuwsbrief::find($id);
+        $nieuwsbrieven->naam =  $request->get('naam');
+        $nieuwsbrieven->template_id = $request->get('template_id');
+        $nieuwsbrieven->afzender = $request->get('afzender');
+        $nieuwsbrieven->email = $request->get('email');
+        $nieuwsbrieven->save();
+
+        return redirect('pages.overzicht')->with('success');
+    }
+
+    public function destroy($id)
+    {
+        $nieuwsbrieven = Nieuwsbrief::find($id);
+        $nieuwsbrieven->delete();
+
+        return redirect('pages.overzicht')->with('success');
     }
 }

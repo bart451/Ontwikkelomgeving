@@ -9,31 +9,10 @@ use Illuminate\Support\Facades\Session;
 class Nieuwsbrief extends Model
 {
     use HasFactory;
-    protected $table = 'nieuwsbrieven';
-    public function hasData() {
-        $onderwerp = Session::get('naam');
-        $template = Session::get('template_id');
-        $afzender = Session::get('afzender');
-        $email = Session::get('email');
 
-        if ($onderwerp !== null && $template !== null && $afzender !== null && $email !== null) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // Definieren van tabelnaam in de database.
+    protected $table = 'nieuwsbrieven';
+
+    protected $fillable = ['naam', 'afzender', 'email' , 'template_id'];
+//    protected $fillable = ['id', 'naam', 'afzender', 'email', 'template_id', 'leesbevestiging', 'verzenddatum', 'verzondendatum', 'status', 'inhoud', 'created_by', 'created_at', 'updated_at', 'deleted_at'];
 }
-//class NieuwsbriefSession {
-//    public function hasData() {
-//        $onderwerp = Session::get('naam');
-//        $template = Session::get('template_id');
-//        $afzender = Session::get('afzender');
-//        $email = Session::get('email');
-//
-//        if ($onderwerp !== null && $template !== null && $afzender !== null && $email !== null) {
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
-//}

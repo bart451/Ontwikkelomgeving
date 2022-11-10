@@ -15,18 +15,18 @@ return new class extends Migration {
         Schema::create('nieuwsbrieven', function (Blueprint $table) {
             $table->id();
             $table->string('naam');
-            $table->string('afzender');
+            $table->string('afzender')->nullable();;
             $table->string('email')->unique();
-            $table->enum('leesbevestiging', ['nee', 'ja']);
+            $table->enum('leesbevestiging', ['nee', 'ja'])->nullable();;
             $table->datetime('verzenddatum')->nullable();
             $table->datetime('verzondendatum')->nullable();
             $table->enum('status', ['nieuw', 'wachtrij', 'verzonden']);
             $table->foreignId('template_id')->references('id')->on('templates')->onDelete('cascade');
-            $table->text('inhoud');
-            $table->string('created_by');
-            $table->date('created_at');
+            $table->text('inhoud')->nullable();;
+            $table->string('created_by')->nullable();;
+            $table->datetime('created_at');
             $table->datetime('updated_at');
-            $table->datetime('deleted_at');
+            $table->datetime('deleted_at')->nullable();;
         });
     }
 
