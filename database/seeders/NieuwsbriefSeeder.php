@@ -17,7 +17,7 @@ class NieuwsbriefSeeder extends Seeder
      */
     public function run()
     {
-        $max = 20;
+        $max = 1;
         for($c=1; $c<=$max; $c++) {
             Nieuwsbrief::factory()->create();
         }

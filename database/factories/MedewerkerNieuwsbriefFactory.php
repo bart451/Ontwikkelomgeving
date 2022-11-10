@@ -16,8 +16,9 @@ class MedewerkerNieuwsbriefFactory extends Factory
      */
     public function definition()
     {
+        static $number = 1;
         return [
-            'id' => 1,
+            'id' => $number++,
             'medewerker_id' => 1,
             'nieuwsbrief_id' => 1,
         ];

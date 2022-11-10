@@ -16,8 +16,9 @@ class MedewerkerFactory extends Factory
      */
     public function definition()
     {
+        static $number = 1;
         return [
-            'id' => $this->faker->unique(true)->numberBetween(1, 10000000),
+            'id' => $number++,
             'naam' => $this->faker->firstName,
             'email' => $this->faker->unique()->safeEmail,
             'telefoon' => $this->faker->unique(true)->numberBetween(1, 10000000),

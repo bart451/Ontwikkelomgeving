@@ -14,7 +14,7 @@ class TemplateSeeder extends Seeder
      */
     public function run()
     {
-        $max = 1;
+        $max = 3;
         for($c=1; $c<=$max; $c++) {
             \App\Models\Template::factory()->create();
         }

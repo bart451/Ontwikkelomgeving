@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Template;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,9 @@ class TemplateFactory extends Factory
      */
     public function definition()
     {
+        static $number = 1;
         return [
-            'id' => 1,
+            'id' => $number++,
             'naam' => $this->faker->firstName,
             'inhoud' => $this->faker->paragraph,
             'updated_at' => $this->faker->dateTime(),
