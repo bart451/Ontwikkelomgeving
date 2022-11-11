@@ -25,10 +25,12 @@ Route::get('/pages/overzicht', [NieuwsbriefController::class, 'index'])->name('p
 
 //// Route voor het aanmaken van een nieuwsbrief
 Route::get('/pages/nieuwsbrief', [NieuwsbriefController::class, 'create']);
-Route::post('storenieuwsbrief', [NieuwsbriefController::class, 'store']);
-
+Route::post('/storenieuwsbrief', [NieuwsbriefController::class, 'store']);
 
 //// Route voor het bewerken van een nieuwsbrief
-Route::get('/pages/bewerknieuwsbrief', [NieuwsbriefController::class, 'edit'])->name('pages.bewerknieuwsbrief');
-Route::post('bewerknieuwsbrief', [NieuwsbriefController::class, 'update']);
+Route::get('/pages/bewerknieuwsbrief/{id}', [NieuwsbriefController::class, 'edit'])->name('pages.bewerknieuwsbrief');
+Route::post('/bewerknieuwsbrief/{id}', [NieuwsbriefController::class, 'update']);
+
+//// Route voor het verwijderen van een nieuwsbrief
+//Route::view('verwijdernieuwsbrief');
 

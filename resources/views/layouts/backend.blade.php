@@ -25,6 +25,7 @@
   @yield('css_after')
 
   <!-- Scripts -->
+    <link rel="stylesheet" href="assets/js/plugins/flatpickr/flatpickr.min.css">
   <script>
     window.Laravel = {!! json_encode(['csrfToken' => csrf_token()]) !!};
   </script>
@@ -32,7 +33,7 @@
 </head>
 
 <body>
-  <div id="page-container" class="sidebar-o enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow">
+  <div id="page-container" class="sidebar-o sidebar-mini enable-page-overlay sidebar-dark side-scroll page-header-fixed main-content-narrow">
     <!-- Side Overlay-->
     <aside id="side-overlay" class="fs-sm">
       <!-- Side Header -->

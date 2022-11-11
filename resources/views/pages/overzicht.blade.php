@@ -26,6 +26,7 @@
 @endsection
 
 @section('content')
+
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -75,35 +76,61 @@
                 </h3>
             </div>
             <div class="block-content block-content-full">
-                <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
-                <table data-paging='false' class="table table-bordered table-striped table-vcenter js-dataTable-full fs-sm" style="width:100%">
-                    <thead>
-                    <tr>
-                        <th class="text-center" style="width: 80px;">#</th>
-                        <th>Nieuwsbrief naam</th>
-                        <th>Afzender</th>
-                        <th>E-mail</th>
-                        <th>Leesbevestiging</th>
-                        <th>Aanmaak datum</th>
-                        <th>Verzend datum</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($nieuwsbrieven as $nieuwsbrief)
+                <div class="table-responsive">
+                    <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
+                    <table data-paging='false'
+                           class="js-table-checkable table table-hover table-vcenter js-dataTable-full table-striped fs-sm js-table-checkable-enabled"
+                           style="width:100%">
+                        <thead>
                         <tr>
-                            <td class=""></td>
-                            <td class="">{{ $nieuwsbrief->naam }}</td>
-                            <td class="">{{ $nieuwsbrief->afzender }}</td>
-                            <td class="">{{ $nieuwsbrief->email }}</td>
-                            <td class="">{{ $nieuwsbrief->leesbevestiging }}</td>
-                            <td class="">{{ $nieuwsbrief->created_at }}</td>
-                            <td class="">{{ $nieuwsbrief->verzenddatum }}</td>
-                            <td class="">{{ $nieuwsbrief->status }}</td>
+                            <th class="text-center" style="width: 80px;">#</th>
+                            <th>Nieuwsbrief naam</th>
+                            <th>Afzender</th>
+                            <th>E-mail</th>
+                            <th style="width: 2%;">Leesbevestiging</th>
+                            <th>Aanmaak datum</th>
+                            <th>Verzend datum</th>
+                            <th style="width: 10%;">Status</th>
+                            <th style="width: 3%;">Bewerken</th>
                         </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                        @foreach($nieuwsbrieven as $nieuwsbrief)
+                            <tr>
+                                <td class=""></td>
+                                <td class=""><a
+                                        href="{{route('pages.bewerknieuwsbrief',"$nieuwsbrief->id")}}">{{ $nieuwsbrief->naam }}</a>
+                                </td>
+                                <td class="">{{ $nieuwsbrief->afzender }}</td>
+                                <td class="">{{ $nieuwsbrief->email }}</td>
+                                <td class="">{{ $nieuwsbrief->leesbevestiging }}</td>
+                                <td class="">{{ $nieuwsbrief->created_at }}</td>
+                                <td class="">{{ $nieuwsbrief->verzenddatum }}</td>
+                                <td class="">{{ $nieuwsbrief->status }}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        <a href="{{route('pages.bewerknieuwsbrief',"$nieuwsbrief->id")}}">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled"
+                                                    data-bs-toggle="tooltip" title="" data-bs-original-title="Edit">
+                                                <i class="fa fa-fw fa-pencil-alt">
+                                                </i>
+                                            </button>
+                                        </a>
+{{--                                        <a href="{{route('pages.verwijdernieuwsbrief',"$nieuwsbrief->id")}}">--}}
+                                            <button type="button"
+                                                    class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled"
+                                                    data-bs-toggle="tooltip" title="" data-bs-original-title="Delete">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+{{--                                        </a>--}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

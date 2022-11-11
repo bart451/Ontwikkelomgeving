@@ -28,11 +28,13 @@ class NieuwsbriefController extends Controller
             'email' => $request->email,
             'template_id' => $request->template_id,
         ]);
-        return redirect('pages/bewerknieuwsbrief')->with('success');
+        return response()->redirectToRoute('pages.bewerknieuwsbrief', ['id' => $nieuwsbrieven->id]);
+//        return redirect("pages/bewerknieuwsbrief/{$nieuwsbrieven->id}");
     }
 
     public function edit($id)
     {
+//        dd($id);
         $nieuwsbrieven = Nieuwsbrief::find($id);
         return view('pages.bewerknieuwsbrief', compact('nieuwsbrieven'));
     }
@@ -40,13 +42,15 @@ class NieuwsbriefController extends Controller
     public function update(Request $request, $id)
     {
         $nieuwsbrieven = Nieuwsbrief::find($id);
-        $nieuwsbrieven->naam =  $request->get('naam');
-        $nieuwsbrieven->template_id = $request->get('template_id');
+        $nieuwsbrieven->naam = $request->get('naam');
         $nieuwsbrieven->afzender = $request->get('afzender');
         $nieuwsbrieven->email = $request->get('email');
+        $nieuwsbrieven->inhoud = $request->get('inhoud');
+        $nieuwsbrieven->status = $request->get('status');
         $nieuwsbrieven->save();
 
-        return redirect('pages.overzicht')->with('success');
+//        return view('pages.overzicht');
+        return response()->redirectToRoute('pages.overzicht');
     }
 
     public function destroy($id)
@@ -54,6 +58,6 @@ class NieuwsbriefController extends Controller
         $nieuwsbrieven = Nieuwsbrief::find($id);
         $nieuwsbrieven->delete();
 
-        return redirect('pages.overzicht')->with('success');
+        return response()->redirectToRoute('pages.overzicht');
     }
 }

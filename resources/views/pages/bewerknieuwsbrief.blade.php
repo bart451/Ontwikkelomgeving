@@ -1,7 +1,6 @@
 @extends('layouts.backend')
 
 @section('content')
-
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -31,68 +30,128 @@
 
     <!-- Page Content -->
     <div class="content">
-        <form method="POST" name="pages.nieuwsbrief" id="pages.nieuwsbrief" action="{{url('bewerknieuwsbrief')}}">
-        <div class="block-content">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-floating mb-4">
-                        <input type="text" class="form-control" id="naam" name="naam" value="{{ $nieuwsbrief->naam }}">
-                        <label for="example-text-input-floating">Onderwerp</label>
+        <form method="POST" name="bewerknieuwsbrief" id="bewerknieuwsbrief"
+              action="{{url('/bewerknieuwsbrief', $nieuwsbrieven->id) }}">
+            @csrf
+                <div class="row">
+                    <div class="col-6 col-lg-4">
+                        <a class="block block-rounded block-link-shadow text-center" href="">
+                            <div class="block-content block-content-full">
+                                <div class="fs-2 fw-semibold text-dark">
+                                    {{ $nieuwsbrieven->status }}
+                                </div>
+                            </div>
+                            <div class="block-content py-2 bg-body-light">
+                                <p class="fw-medium fs-sm text-muted mb-0">
+                                    Status
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-6 col-lg-4">
+                        <a class="block block-rounded block-link-shadow text-center" href="">
+                            <div class="block-content block-content-full">
+                                <div class="fs-2 fw-semibold text-dark">{{ $nieuwsbrieven->verzenddatum }}</div>
+                            </div>
+                            <div class="block-content py-2 bg-body-light">
+                                <p class="fw-medium fs-sm text-muted mb-0">
+                                    Verzend datum
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4">
+                        <a class="block block-rounded block-link-shadow text-center" href="">
+                            <div class="block-content block-content-full">
+                                <div class="fs-2 fw-semibold text-danger">
+                                    <i class="fa fa-times"></i>
+                                </div>
+                            </div>
+                            <div class="block-content py-2 bg-body-light">
+                                <p class="fw-medium fs-sm text-danger mb-0">
+                                    Verwijder nieuwsbrief
+                                </p>
+                            </div>
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-floating mb-4">
-                        <select class="form-select" id="example-select-floating" name="example-select-floating"
-                                aria-label="Floating label select example">
-                            <option selected="">Selecteer een optie</option>
-                            <option value="1">Bart1</option>
-                            <option value="2">Bart2</option>
-                            <option value="3">Bart3</option>
-                        </select>
-                        <label for="example-select-floating">Afzender</label>
-                    </div>
+            <div class="block block-rounded">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">ID {{ $nieuwsbrieven->id }}</h3>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-floating mb-4">
-                        <input type="email" class="form-control" id="example-email-input-floating"
-                               name="example-email-input-floating" placeholder="john.doe@example.com">
-                        <label for="example-email-input-floating">Email</label>
+                <div class="block-content">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-4">
+                                <input type="text" class="form-control" id="naam" name="naam"
+                                       value="{{ $nieuwsbrieven->naam }}">
+                                <label for="example-text-input-floating">Onderwerp</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-4">
+                                <select class="form-select" id="afzender" name="afzender"
+                                        value="{{ $nieuwsbrieven->afzender }}">
+                                    <option selected="">Bart1</option>
+                                    <option value="2">Bart2</option>
+                                    <option value="3">Bart3</option>
+                                </select>
+                                <label for="example-select-floating">Afzender</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating mb-4">
-                        <input type="email" class="form-control" id="example-email-input-floating"
-                               name="example-email-input-floating" placeholder="john.doe@example.com">
-                        <label for="example-email-input-floating">Datum</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-4">
+                                <input type="email" class="form-control" id="email" name="email"
+                                       value="{{ $nieuwsbrieven->email }}">
+                                <label for="example-email-input-floating">Email</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating mb-4">
+                                <input type="email" class="form-control" id="example-email-input-floating"
+                                       name="example-email-input-floating" placeholder="john.doe@example.com">
+                                <label for="example-email-input-floating">Datum</label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-floating mb-4">
-                        <select class="form-select" id="example-select-floating" name="example-select-floating"
-                                aria-label="Floating label select example">
-                            <option selected="">Selecteer een optie</option>
-                            <option value="1">Bart1</option>
-                            <option value="2">Bart2</option>
-                            <option value="3">Bart3</option>
-                        </select>
-                        <label for="example-select-floating">Afzender</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-check form-switch form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="example-switch-inline1"
-                               name="example-switch-inline1" checked="">
-                        <label class="form-check-label" for="example-switch-inline1">Verplichte leesbevestiging?</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-floating mb-4">
+                                <select class="form-select" id="example-select-floating" name="example-select-floating"
+                                        aria-label="Floating label select example">
+                                    <option selected="">Selecteer een optie</option>
+                                    <option value="1">Bart1</option>
+                                    <option value="2">Bart2</option>
+                                    <option value="3">Bart3</option>
+                                </select>
+                                <label for="example-select-floating">Contactpersoon koppelen</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Verplichte leesbevestiging?</label>
+                            <div class="space-x-2">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="leesbevestiging"
+                                           name="leesbevestiging"
+                                           checked="">
+                                    <label class="form-check-label" for="leesbevestiging">Nee</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" id="leesbevestiging"
+                                           name="leesbevestiging">
+                                    <label class="form-check-label" for="leesbevestiging">Ja</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-4">
-                    <div id="editor"></div>
+                    <textarea class="form-control" name="inhoud" id="editor" cols="30" rows="10"
+                              value="{{ $nieuwsbrieven->inhoud }}">{!! $nieuwsbrieven->inhoud!!}</textarea>
                     <script>
                         ClassicEditor
                             .create(document.querySelector('#editor'))
@@ -103,7 +162,6 @@
                                 console.error(error);
                             });
                     </script>
-
                 </div>
             </div>
             <div class="row">
@@ -111,8 +169,8 @@
                     <button type="submit" class="btn btn-primary">Bewerk</button>
                 </div>
             </div>
-        </div>
-        <!-- END Your Block -->
+
+            <!-- END Your Block -->
     </div>
     <!-- END Page Content -->
 @endsection
