@@ -10,9 +10,13 @@ class Nieuwsbrief extends Model
 {
     use HasFactory;
 
-    // Definieren van tabelnaam in de database.
-    protected $table = 'nieuwsbrieven';
 
+    // Definiëren van tabelnaam in de database.
+    protected $table = 'nieuwsbrieven';
     protected $fillable = ['naam', 'afzender', 'email' , 'template_id'];
-//    protected $fillable = ['id', 'naam', 'afzender', 'email', 'template_id', 'leesbevestiging', 'verzenddatum', 'verzondendatum', 'status', 'inhoud', 'created_by', 'created_at', 'updated_at', 'deleted_at'];
+
+    public function medewerkers()
+    {
+        return $this->belongsToMany(Medewerker::class,'medewerker_nieuwsbrief');
+    }
 }

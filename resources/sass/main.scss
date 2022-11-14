@@ -140,3 +140,6 @@
 
 // User styles (your own styles/overrides)
 @import 'custom/main';
+
+//Importeren van datum en tijd in de bewerk pagina van de nieuwsbrief
+@import 'node_modules/flatpickr/dist/flatpickr.min';

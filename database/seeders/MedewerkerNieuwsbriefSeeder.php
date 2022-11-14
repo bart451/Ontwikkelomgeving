@@ -14,7 +14,7 @@ class MedewerkerNieuwsbriefSeeder extends Seeder
      */
     public function run()
     {
-        $max = 20;
+        $max = 0;
         for ($c = 1; $c <= $max; $c++) {
             \App\Models\MedewerkerNieuwsbrief::factory()->create();
         }

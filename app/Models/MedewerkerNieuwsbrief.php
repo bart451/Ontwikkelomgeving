@@ -9,4 +9,14 @@ class MedewerkerNieuwsbrief extends Model
 {
     use HasFactory;
     protected $table = 'medewerker_nieuwsbrief';
+
+    public function nieuwsbrief(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo('App\Models\Nieuwsbrief');
+    }
+
+    public function Medewerker(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo('App\Models\Medewerker');
+    }
 }

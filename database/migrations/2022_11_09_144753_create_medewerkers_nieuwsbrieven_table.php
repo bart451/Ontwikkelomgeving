@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('medewerker_nieuwsbrief', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('medewerker_id')->references('id')->on('medewerkers')->onDelete('cascade');
-            $table->foreignId('nieuwsbrief_id')->references('id')->on('nieuwsbrieven')->onDelete('cascade');
+            $table->integer('nieuwsbrief_id')->unsigned();
+            $table->integer('medewerker_id')->unsigned();
             $table->datetime('updated_at');
             $table->datetime('created_at');
         });

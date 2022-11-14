@@ -56,16 +56,58 @@
 
     <!-- Page Content -->
     <div class="content">
-        <div class="buttons">
-            <button type="button" class="btn btn-alt-primary me-1 mb-3">
-                <i class="fa fa-fw fa-plus me-1"></i> <a href="/pages/nieuwsbrief">Maak een nieuwe nieuwsbrief aan</a>
-            </button>
-            <button type="button" class="btn btn-secondary me-1 mb-3">
-                <i class="fa fa-fw fa-upload me-1"></i> Download
-            </button>
-            <button type="button" class="btn btn-secondary me-1 mb-3">
-                <i class="fa fa-fw fa-times me-1"></i> Verwijder
-            </button>
+
+        <div class="row">
+            <div class="col-6 col-lg-3">
+                <a class="block block-rounded block-link-shadow text-center" href=/pages/nieuwsbrief>
+                    <div class="block-content block-content-full">
+                        <div class="fs-2 fw-semibold text-success">
+                            <i class="fa fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="block-content py-2 bg-body-light">
+                        <p class="fw-medium fs-sm text-success mb-0">
+                            Nieuwe nieuwsbrief
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-lg-3">
+                <a class="block block-rounded block-link-shadow text-center" href="javascript:void(0)">
+                    <div class="block-content block-content-full">
+                        <div class="fs-2 fw-semibold text-danger">4</div>
+                    </div>
+                    <div class="block-content py-2 bg-body-light">
+                        <p class="fw-medium fs-sm text-danger mb-0">
+                            Wachtrij
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-lg-3">
+                <a class="block block-rounded block-link-shadow text-center" href="be_pages_ecom_dashboard.html">
+                    <div class="block-content block-content-full">
+                        <div class="fs-2 fw-semibold text-dark">2</div>
+                    </div>
+                    <div class="block-content py-2 bg-body-light">
+                        <p class="fw-medium fs-sm text-muted mb-0">
+                            New
+                        </p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-6 col-lg-3">
+                <a class="block block-rounded block-link-shadow text-center" href="be_pages_ecom_dashboard.html">
+                    <div class="block-content block-content-full">
+                        <div class="fs-2 fw-semibold text-dark">6</div>
+                    </div>
+                    <div class="block-content py-2 bg-body-light">
+                        <p class="fw-medium fs-sm text-muted mb-0">
+                            Alle nieuwsbrieven
+                        </p>
+                    </div>
+                </a>
+            </div>
         </div>
 
         <!-- Dynamic Table Full -->
@@ -80,7 +122,7 @@
                     <!-- DataTables init on table by adding .js-dataTable-full class, functionality is initialized in js/pages/tables_datatables.js -->
                     <table data-paging='false'
                            class="js-table-checkable table table-hover table-vcenter js-dataTable-full table-striped fs-sm js-table-checkable-enabled"
-                           style="width:100%">
+                           style="width:100%" id="example">
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 80px;">#</th>
@@ -106,7 +148,7 @@
                                 <td class="">{{ $nieuwsbrief->leesbevestiging }}</td>
                                 <td class="">{{ $nieuwsbrief->created_at }}</td>
                                 <td class="">{{ $nieuwsbrief->verzenddatum }}</td>
-                                <td class="">{{ $nieuwsbrief->status }}</td>
+                                <td class="" >{{ $nieuwsbrief->status }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{route('pages.bewerknieuwsbrief',"$nieuwsbrief->id")}}">
@@ -117,13 +159,13 @@
                                                 </i>
                                             </button>
                                         </a>
-{{--                                        <a href="{{route('pages.verwijdernieuwsbrief',"$nieuwsbrief->id")}}">--}}
-                                            <button type="button"
-                                                    class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled"
-                                                    data-bs-toggle="tooltip" title="" data-bs-original-title="Delete">
-                                                <i class="fa fa-fw fa-times"></i>
-                                            </button>
-{{--                                        </a>--}}
+                                        {{--                                        <a href="{{route('pages.verwijdernieuwsbrief',"$nieuwsbrief->id")}}">--}}
+                                        <button type="button"
+                                                class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled"
+                                                data-bs-toggle="tooltip" title="" data-bs-original-title="Delete">
+                                            <i class="fa fa-fw fa-times"></i>
+                                        </button>
+                                        {{--                                        </a>--}}
                                     </div>
                                 </td>
                             </tr>
@@ -134,4 +176,5 @@
             </div>
         </div>
     </div>
+
 @endsection

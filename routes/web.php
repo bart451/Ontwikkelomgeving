@@ -32,5 +32,5 @@ Route::get('/pages/bewerknieuwsbrief/{id}', [NieuwsbriefController::class, 'edit
 Route::post('/bewerknieuwsbrief/{id}', [NieuwsbriefController::class, 'update']);
 
 //// Route voor het verwijderen van een nieuwsbrief
-//Route::view('verwijdernieuwsbrief');
+Route::get('/verwijdernieuwsbrief/{id}', [NieuwsbriefController::class, 'destroy'])->name('verwijdernieuwsbrief');
 
