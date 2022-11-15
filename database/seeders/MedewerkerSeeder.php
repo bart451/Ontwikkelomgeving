@@ -14,7 +14,7 @@ class MedewerkerSeeder extends Seeder
      */
     public function run()
     {
-        $max = 1;
+        $max = 10;
         for($c=1; $c<=$max; $c++) {
             \App\Models\Medewerker::factory()->create();
         }    }

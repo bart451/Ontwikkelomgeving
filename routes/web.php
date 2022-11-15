@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NieuwsbriefController;
+use App\Http\Controllers\MedewerkerNieuwsbriefController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,5 @@ Route::post('/bewerknieuwsbrief/{id}', [NieuwsbriefController::class, 'update'])
 //// Route voor het verwijderen van een nieuwsbrief
 Route::get('/verwijdernieuwsbrief/{id}', [NieuwsbriefController::class, 'destroy'])->name('verwijdernieuwsbrief');
 
+//// Route voor het overzicht van medewerkers
+Route::get('/pages/medewerkersoverzicht', [MedewerkerNieuwsbriefController::class, 'index'])->name('pages.medewerkersoverzicht');

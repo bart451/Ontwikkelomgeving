@@ -200,19 +200,27 @@
                             <span class="nav-main-link-name">Dashboard</span>
                         </a>
                     </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link{{ request()->is('pages/overzicht') ? ' active' : '' }}" href="/pages/overzicht">
+                            <i class="nav-main-link-icon far fa-comment"></i>
+                            <span class="nav-main-link-name">Overzicht</span>
+                        </a>
+                    </li>
+                    <li class="nav-main-item">
+                        <a class="nav-main-link{{ request()->is('pages/medewerkersoverzicht') ? ' active' : '' }}" href="/pages/medewerkersoverzicht">
+                            <i class="nav-main-link-icon fa-solid fa-users"></i>
+                            <span class="nav-main-link-name">Medewerkers</span>
+                        </a>
+                    </li>
                     <li class="nav-main-heading">Various</li>
                     <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                            aria-expanded="true" href="#">
                             <i class="nav-main-link-icon si si-bulb"></i>
-                            <span class="nav-main-link-name">Pagina</span>
+                            <span class="nav-main-link-name">Nieuwsbrieven</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
-                                <a class="nav-main-link{{ request()->is('pages/overzicht') ? ' active' : '' }}"
-                                   href="/pages/overzicht">
-                                    <span class="nav-main-link-name">Overzicht</span>
-                                </a>
                                 <a class="nav-main-link{{ request()->is('pages/nieuwsbrief') ? ' active' : '' }}"
                                    href="/pages/nieuwsbrief">
                                     <span class="nav-main-link-name">Nieuwsbrief</span>

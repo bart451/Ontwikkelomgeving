@@ -120,13 +120,13 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-floating mb-4">
-                                <select class="form-select" id="example-select-floating" name="example-select-floating"
+                                <select class="form-select" id="medewerkers" name="medewerkers"
                                         aria-label="Floating label select example">
-                                    @foreach($nieuwsbrieven as $nieuwsbrief)
-                                        <option value="{{$nieuwsbrieven->id}}">{{$nieuwsbrieven->naam}}</option>
+                                    @foreach ($medewerkers as $medewerker)
+                                        <option value="{{$medewerker->id}}">{{$medewerker->naam}}</option>
                                     @endforeach
                                 </select>
-                                <label for="example-select-floating">Contactpersoon koppelen</label>
+                                <label for="example-select-floating">Medewerkers koppelen</label>
                             </div>
                         </div>
                         <div class="col-md-3">

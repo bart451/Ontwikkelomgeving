@@ -9,7 +9,8 @@ class Medewerker extends Model
 {
     use HasFactory;
 
-    public function Medewerker()
+    //De nieuwsbrieven die bij deze medewerker horen
+    public function nieuwsbrieven()
     {
         return $this->belongsToMany(Nieuwsbrief::class, 'medewerker_nieuwsbrief');
     }

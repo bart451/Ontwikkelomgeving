@@ -17,8 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('nieuwsbrief_id')->unsigned();
             $table->integer('medewerker_id')->unsigned();
-            $table->datetime('updated_at');
-            $table->datetime('created_at');
+
         });
     }
 

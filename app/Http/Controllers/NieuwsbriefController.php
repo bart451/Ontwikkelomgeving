@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medewerker;
 use App\Models\Nieuwsbrief;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,15 +32,16 @@ class NieuwsbriefController extends Controller
             'email' => $request->email,
             'template_id' => $request->template_id,
         ]);
-        return response()->redirectToRoute('pages.bewerknieuwsbrief', ['id' => $nieuwsbrieven->id]);
 
+        return response()->redirectToRoute('pages.bewerknieuwsbrief', ['id' => $nieuwsbrieven->id]);
     }
 
     public function edit($id)
     {
 //        dd($id);
+        $medewerkers = Medewerker::all();
         $nieuwsbrieven = Nieuwsbrief::find($id);
-        return view('pages.bewerknieuwsbrief', compact('nieuwsbrieven'));
+        return view('pages.bewerknieuwsbrief', compact('nieuwsbrieven', 'medewerkers'));
     }
 
     //Functie die een bestaande nieuwsbrief bewerkt met nieuwe informatie. Na het opslaan gaat hij terug naar de overzichten pagina.
@@ -53,6 +55,8 @@ class NieuwsbriefController extends Controller
         $nieuwsbrieven->leesbevestiging = $request->get('leesbevestiging');
         $nieuwsbrieven->status = $request->get('status');
         $nieuwsbrieven->verzenddatum = $request->get('verzenddatum');
+        $medewerker_id = $request->get('medewerkers');
+        $nieuwsbrieven->medewerkers()->attach($medewerker_id);
         $nieuwsbrieven->save();
 
         return response()->redirectToRoute('pages.overzicht');
