@@ -19,4 +19,12 @@ class Nieuwsbrief extends Model
     {
         return $this->belongsToMany(Medewerker::class, 'medewerker_nieuwsbrief');
     }
+    public function get_medewerkers()
+    {
+        return MedewerkerNieuwsbrief::find($this->medewerker_id);
+    }
+    public function get_template()
+    {
+        return Template::find($this->template_id);
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medewerker;
+use App\Models\MedewerkerNieuwsbrief;
 use App\Models\Nieuwsbrief;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -55,12 +56,12 @@ class NieuwsbriefController extends Controller
         $nieuwsbrieven->leesbevestiging = $request->get('leesbevestiging');
         $nieuwsbrieven->status = $request->get('status');
         $nieuwsbrieven->verzenddatum = $request->get('verzenddatum');
-        $medewerker_id = $request->get('medewerkers');
-        $nieuwsbrieven->medewerkers()->attach($medewerker_id);
+        $nieuwsbrieven->medewerkers()->sync($request->input('medewerkers'));
         $nieuwsbrieven->save();
 
         return response()->redirectToRoute('pages.overzicht');
     }
+
     //Functie voor het verwijderen van een nieuwsbrief.
     public function destroy($id)
     {

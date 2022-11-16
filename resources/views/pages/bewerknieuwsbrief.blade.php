@@ -50,9 +50,15 @@
                 </div>
                 <div class="col-6 col-lg-4">
                     <a class="block block-rounded block-link-shadow text-center" href="">
-                        <div class="block-content block-content-full">
-                            <div class="fs-2 fw-semibold text-dark">{{ $nieuwsbrieven->verzenddatum }}</div>
-                        </div>
+                        @if ($nieuwsbrieven->verzenddatum === null)
+                            <div class="block-content block-content-full">
+                                <div class="fs-2 fw-semibold text-dark">Nog geen verzenddatum</div>
+                            </div>
+                        @else
+                            <div class="block-content block-content-full">
+                                <div class="fs-2 fw-semibold text-dark">{{ $nieuwsbrieven->verzenddatum }}</div>
+                            </div>
+                        @endif
                         <div class="block-content py-2 bg-body-light">
                             <p class="fw-medium fs-sm text-muted mb-0">
                                 Verzend datum
@@ -119,15 +125,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-floating mb-4">
-                                <select class="form-select" id="medewerkers" name="medewerkers"
-                                        aria-label="Floating label select example">
-                                    @foreach ($medewerkers as $medewerker)
-                                        <option value="{{$medewerker->id}}">{{$medewerker->naam}}</option>
+                            <label for="example-select-floating">Medewerkers koppelen</label>
+                            <select class="form-select" id="medewerkers" name="medewerkers[]"
+                                    aria-label="Floating label select example" size="5" multiple>
+                                @foreach ($medewerkers as $medewerker)
+                                    @foreach($nieuwsbrieven->get_medewerkers() as $m )
+                                        <option value="{{$medewerker->id}}" @if ($m->id == $medewerker->id)selected @endif>{{$medewerker->naam}}</option>
                                     @endforeach
-                                </select>
-                                <label for="example-select-floating">Medewerkers koppelen</label>
-                            </div>
+{{--                                    <option value="{{$medewerker->id }}" {{ $medewerker->id === $nieuwsbrieven->get_medewerkers()->medewerker_id? 'selected' : '' }}>{{$medewerker->naam}}</option>--}}
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Verplichte leesbevestiging?</label>
@@ -165,12 +172,18 @@
                             </div>
                         </div>
                     </div>
+                    <br>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 mb-4">
-                    <textarea class="form-control" name="inhoud" id="editor" cols="30" rows="10"
-                              value="{{ $nieuwsbrieven->inhoud }}">{!! $nieuwsbrieven->inhoud!!}</textarea>
+                    @if($nieuwsbrieven->inhoud === null)
+                        <textarea class="form-control" name="inhoud" id="editor" cols="30"
+                                  rows="10">{!! $nieuwsbrieven->get_template()->inhoud!!}</textarea>
+                    @else
+                        <textarea class="form-control" name="inhoud" id="editor" cols="30"
+                                  rows="10">{!! $nieuwsbrieven->inhoud!!}</textarea>
+                    @endif
                     <script>
                         ClassicEditor
                             .create(document.querySelector('#editor'))
