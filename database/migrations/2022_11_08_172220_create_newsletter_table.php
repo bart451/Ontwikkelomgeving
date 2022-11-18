@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->enum('leesbevestiging', ['nee', 'ja'])->nullable();;
             $table->datetime('verzenddatum')->nullable();
             $table->datetime('verzondendatum')->nullable();
-            $table->enum('status', ['Nieuw', 'Wachtrij', 'Verzonden']);
+            $table->enum('status', ['Nieuw', 'Wachtrij', 'Verzonden'])->nullable();;
             $table->foreignId('template_id')->references('id')->on('templates')->onDelete('cascade');
             $table->text('inhoud')->nullable();
             $table->string('created_by')->nullable();;

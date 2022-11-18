@@ -115,9 +115,10 @@
                                 <label for="example-email-input-floating">Email</label>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-floating mb-4">
-                                <input type="datetime-local" class="form-control" id="verzenddatum" name="verzenddatum"
+                                <input type="date" class="form-control" id="verzenddatum" name="verzenddatum"
                                        value="{{ $nieuwsbrieven->verzenddatum }}">
                                 <label for="example-email-input-floating">Verzenddatum</label>
                             </div>
@@ -129,7 +130,8 @@
                             <select class="form-select" id="medewerkers" name="medewerkers[]"
                                     aria-label="Floating label select example" size="5" multiple>
                                 @foreach ($medewerkers as $medewerker)
-                                    <option value="{{$medewerker->id}}" @if ($nieuwsbrieven->medewerkers()->where('medewerker_id', '=', $medewerker->id)->count() > 0 ) selected @endif>{{$medewerker->naam}}</option>
+                                    <option value="{{$medewerker->id}}"
+                                            @if ($nieuwsbrieven->medewerkers()->where('medewerker_id', '=', $medewerker->id)->count() > 0 ) selected @endif>{{$medewerker->naam}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -145,26 +147,6 @@
                                     <input class="form-check-input" type="radio" id="leesbevestiging" value="ja"
                                            name="leesbevestiging">
                                     <label class="form-check-label" for="leesbevestiging">Ja</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label">Status</label>
-                            <div class="space-x-2">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="status" name="status" value="nieuw"
-                                           checked="">
-                                    <label class="form-check-label" for="leesbevestiging">Nieuw</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="status" value="wachtrij"
-                                           name="status">
-                                    <label class="form-check-label" for="leesbevestiging">Wachtrij</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="status" value="verzonden"
-                                           name="status">
-                                    <label class="form-check-label" for="leesbevestiging">Verzenden</label>
                                 </div>
                             </div>
                         </div>
@@ -195,10 +177,12 @@
             </div>
             <div class="row">
                 <div class="col-md-3">
-                    <button type="submit" class="btn btn-primary">Bewerk</button>
-                </div>
-                <div class="col-md-3">
-                    <a href="{{route('pages.send-mail',[ 'id'=> $nieuwsbrieven->id ])}}">Verstuur Email</a>
+                    <button type="submit" class="btn btn-primary">Opslaan</button>
+                    <a href="{{route('pages.send-mail',[ 'id'=> $nieuwsbrieven->id ])}}">
+                        <button type="button" class="btn btn-alt-primary"><i class="far fa-fw fa-envelope me-1"></i>
+                            Verstuur Email
+                        </button>
+                    </a>
                 </div>
             </div>
             <!-- END Your Block -->

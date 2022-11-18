@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
+
     public $mailInfo;
 
     /**
