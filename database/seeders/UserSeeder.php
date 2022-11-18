@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Nieuwsbrief;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class NieuwsbriefSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,13 +14,9 @@ class NieuwsbriefSeeder extends Seeder
      */
     public function run()
     {
-        $max = 1;
+        $max = 3;
         for($c=1; $c<=$max; $c++) {
-            Nieuwsbrief::factory()->create();
+            \App\Models\User::factory()->create();
         }
-
-//        \App\Models\Nieuwsbrief::factory(11)->create();
     }
 }
-
-

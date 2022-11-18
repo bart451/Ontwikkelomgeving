@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NieuwsbriefController;
 use App\Http\Controllers\MedewerkerNieuwsbriefController;
+use App\http\Controllers\MailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,7 @@ Route::get('/verwijdernieuwsbrief/{id}', [NieuwsbriefController::class, 'destroy
 
 //// Route voor het overzicht van medewerkers
 Route::get('/pages/medewerkersoverzicht', [MedewerkerNieuwsbriefController::class, 'index'])->name('pages.medewerkersoverzicht');
+
+//Versturen van testemails
+Route::get('/send-mail/{id}', [MailController::class, 'mailSend'])->name('pages.send-mail');
+

@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Medewerker;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class MedewerkerController extends Controller
 {

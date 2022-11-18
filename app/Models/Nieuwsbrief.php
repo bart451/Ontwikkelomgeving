@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Medewerker;
+use App\Models\Template;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Session;
 
 class Nieuwsbrief extends Model
 {
@@ -17,12 +18,9 @@ class Nieuwsbrief extends Model
     //De medewerkers die bij deze nieuwsbrieven horen
     public function medewerkers()
     {
-        return $this->belongsToMany(Medewerker::class, 'medewerker_nieuwsbrief');
+        return $this->belongsToMany(Medewerker::class);
     }
-    public function get_medewerkers()
-    {
-        return MedewerkerNieuwsbrief::find($this->medewerker_id);
-    }
+
     public function get_template()
     {
         return Template::find($this->template_id);

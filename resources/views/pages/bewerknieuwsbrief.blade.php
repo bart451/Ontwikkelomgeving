@@ -129,10 +129,7 @@
                             <select class="form-select" id="medewerkers" name="medewerkers[]"
                                     aria-label="Floating label select example" size="5" multiple>
                                 @foreach ($medewerkers as $medewerker)
-                                    @foreach($nieuwsbrieven->get_medewerkers() as $m )
-                                        <option value="{{$medewerker->id}}" @if ($m->id == $medewerker->id)selected @endif>{{$medewerker->naam}}</option>
-                                    @endforeach
-{{--                                    <option value="{{$medewerker->id }}" {{ $medewerker->id === $nieuwsbrieven->get_medewerkers()->medewerker_id? 'selected' : '' }}>{{$medewerker->naam}}</option>--}}
+                                    <option value="{{$medewerker->id}}" @if ($nieuwsbrieven->medewerkers()->where('medewerker_id', '=', $medewerker->id)->count() > 0 ) selected @endif>{{$medewerker->naam}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -197,11 +194,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <button type="submit" class="btn btn-primary">Bewerk</button>
                 </div>
+                <div class="col-md-3">
+                    <a href="{{route('pages.send-mail',[ 'id'=> $nieuwsbrieven->id ])}}">Verstuur Email</a>
+                </div>
             </div>
-
             <!-- END Your Block -->
     </div>
     <!-- END Page Content -->

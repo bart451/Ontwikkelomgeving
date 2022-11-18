@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medewerker;
 use App\Models\MedewerkerNieuwsbrief;
+use App\Models\Nieuwsbrief;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class MedewerkerNieuwsbriefController extends Controller
 {

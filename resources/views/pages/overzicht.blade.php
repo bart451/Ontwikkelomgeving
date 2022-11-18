@@ -148,7 +148,7 @@
                                 <td class="">{{ $nieuwsbrief->leesbevestiging }}</td>
                                 <td class="">{{ $nieuwsbrief->created_at }}</td>
                                 <td class="">{{ $nieuwsbrief->verzenddatum }}</td>
-                                <td class="" >{{ $nieuwsbrief->status }}</td>
+                                <td class="">{{ $nieuwsbrief->status }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{route('pages.bewerknieuwsbrief',"$nieuwsbrief->id")}}">
@@ -159,13 +159,13 @@
                                                 </i>
                                             </button>
                                         </a>
-                                        {{--                                        <a href="{{route('pages.verwijdernieuwsbrief',"$nieuwsbrief->id")}}">--}}
-                                        <button type="button"
-                                                class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled"
-                                                data-bs-toggle="tooltip" title="" data-bs-original-title="Delete">
-                                            <i class="fa fa-fw fa-times"></i>
-                                        </button>
-                                        {{--                                        </a>--}}
+                                        <a href="{{route('verwijdernieuwsbrief',"$nieuwsbrief->id")}}">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-alt-secondary js-bs-tooltip-enabled"
+                                                    data-bs-toggle="tooltip" title="" data-bs-original-title="Delete">
+                                                <i class="fa fa-fw fa-times"></i>
+                                            </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
