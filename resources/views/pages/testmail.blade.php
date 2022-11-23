@@ -1,8 +1,9 @@
 @component('mail::message')
-    Versturen naar {!! $mailInfo['naam'] !!}
-    {!!$mailInfo['inhoud'] !!}
-    Verzonden door: {!! $mailInfo['afzender']!!}
-    Afzender email: {!!$mailInfo['email'] !!}
-
+{{--    {{ $nieuwsbrieven->naam }}--}}
+    Versturen naar {!! $nieuwsbrief->naam !!}
+    {!!$nieuwsbrief->inhoud !!}
+    Verzonden door: {!! $nieuwsbrief->afzender!!}
+    Afzender email: {!!$nieuwsbrief->email !!}
+    Afzender email: {!!$nieuwsbrief->email !!}
 
 @endcomponent

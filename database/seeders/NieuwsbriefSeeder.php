@@ -14,12 +14,10 @@ class NieuwsbriefSeeder extends Seeder
      */
     public function run()
     {
-        $max = 1;
-        for($c=1; $c<=$max; $c++) {
+        $max = 2;
+        for ($c = 1; $c <= $max; $c++) {
             Nieuwsbrief::factory()->create();
         }
-
-//        \App\Models\Nieuwsbrief::factory(11)->create();
     }
 }
 

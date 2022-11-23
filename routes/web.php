@@ -32,6 +32,7 @@ Route::post('/storenieuwsbrief', [NieuwsbriefController::class, 'store']);
 //// Route voor het bewerken van een nieuwsbrief
 Route::get('/pages/bewerknieuwsbrief/{id}', [NieuwsbriefController::class, 'edit'])->name('pages.bewerknieuwsbrief');
 Route::post('/bewerknieuwsbrief/{id}', [NieuwsbriefController::class, 'update']);
+Route::post('/bewerknieuwsbrief/{id}/updatemedewerker', [NieuwsbriefController::class, 'updatemedewerker'])->name('updatemedewerker');
 
 //// Route voor het verwijderen van een nieuwsbrief
 Route::get('/verwijdernieuwsbrief/{id}', [NieuwsbriefController::class, 'destroy'])->name('verwijdernieuwsbrief');
@@ -39,6 +40,8 @@ Route::get('/verwijdernieuwsbrief/{id}', [NieuwsbriefController::class, 'destroy
 //// Route voor het overzicht van medewerkers
 Route::get('/pages/medewerkersoverzicht', [MedewerkerNieuwsbriefController::class, 'index'])->name('pages.medewerkersoverzicht');
 
-//Versturen van testemails
+//Versturen van mails
 Route::get('/send-mail/{id}', [MailController::class, 'mailSend'])->name('pages.send-mail');
 
+//Een preview laten zien van de nieuwsbrief
+Route::get('/preview-mail/{id}', [MailController::class, 'previewMail'])->name('pages.preview-mail');

@@ -36,11 +36,19 @@
             <div class="row">
                 <div class="col-6 col-lg-4">
                     <a class="block block-rounded block-link-shadow text-center" href="">
-                        <div class="block-content block-content-full">
-                            <div class="fs-2 fw-semibold text-dark">
-                                {{ $nieuwsbrieven->status }}
+                        @if ($nieuwsbrieven->verzenddatum === null)
+                            <div class="block-content block-content-full">
+                                <div class="fs-2 fw-semibold text-dark">
+                                    Nieuw
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="block-content block-content-full">
+                                <div class="fs-2 fw-semibold text-dark">
+                                    {{ $nieuwsbrieven->status }}
+                                </div>
+                            </div>
+                        @endif
                         <div class="block-content py-2 bg-body-light">
                             <p class="fw-medium fs-sm text-muted mb-0">
                                 Status
@@ -134,6 +142,7 @@
                                             @if ($nieuwsbrieven->medewerkers()->where('medewerker_id', '=', $medewerker->id)->count() > 0 ) selected @endif>{{$medewerker->naam}}</option>
                                 @endforeach
                             </select>
+                            <br>
                         </div>
                         <div class="col-md-3">
                             <label class="form-label">Verplichte leesbevestiging?</label>
@@ -176,16 +185,22 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <button type="submit" class="btn btn-primary">Opslaan</button>
                     <a href="{{route('pages.send-mail',[ 'id'=> $nieuwsbrieven->id ])}}">
                         <button type="button" class="btn btn-alt-primary"><i class="far fa-fw fa-envelope me-1"></i>
                             Verstuur Email
                         </button>
                     </a>
+                    <a href="{{route('pages.preview-mail',[ 'id'=> $nieuwsbrieven->id ])}}">
+                        <button type="button" class="btn btn-alt-primary"><i class="far fa-fw fa-envelope me-1"></i>
+                            Preview Email
+                        </button>
+                    </a>
                 </div>
             </div>
             <!-- END Your Block -->
+        </form>
     </div>
     <!-- END Page Content -->
 @endsection

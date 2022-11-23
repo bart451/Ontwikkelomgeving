@@ -11,22 +11,26 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MailController extends Controller
 {
+    //Functie om een mail te verzenden
     public function mailSend(Request $request, $id)
     {
-        $nieuwsbrieven = Nieuwsbrief::find($id);
-        $email = $nieuwsbrieven->email;
-        $mailInfo = [
-            "naam" => $nieuwsbrieven->naam,
-            "afzender" => $nieuwsbrieven->afzender,
-            "email" => $nieuwsbrieven->email,
-            "inhoud" => $nieuwsbrieven->inhoud,
-        ];
-
-        Mail::to($email)->send(new TestMail($mailInfo));
+        $nieuwsbrief = Nieuwsbrief::find($id);
+        $email = new TestMail($nieuwsbrief);
+        foreach ($nieuwsbrief->medewerkers()->get() as $medewerker) {
+            Mail::to($medewerker->email)->send($email);
+        }
+        $nieuwsbrief->status = "Verzonden";
+        $nieuwsbrief->save();
 
         return response()->json([
             'message' => 'Mail has sent.'
         ], Response::HTTP_OK);
     }
 
+    //Functie om een preview van een nieuwsbrief te laten zien
+    public function previewMail(Request $request, $id)
+    {
+        $nieuwsbrieven = Nieuwsbrief::find($id);
+        return new TestMail($nieuwsbrieven);
+    }
 }

@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Mail;
 use DB;
 use \Illuminate\Support\Facades;
+
 class VerstuurEmail extends Command
 {
     /**
@@ -40,11 +41,19 @@ class VerstuurEmail extends Command
      *
      * @return int
      */
+    //Command om nieuwsbrieven te versturen als hij op status wachtrij staat en de dag overheen komt met vandaag
     public function handle()
     {
-        $today = Carbon::now()->toDateString();
-        $nieuwsbrief = DB::table('nieuwsbrieven')->whereDate('verzenddatum', $today)->get()->toArray();
-        $email = new TestMail($nieuwsbrief);
-        Mail::to('receiver email address')->send($email);
+        $nieuwsbrieven = Nieuwsbrief::all();
+        foreach ($nieuwsbrieven as $nieuwsbrief)
+            if ($nieuwsbrief->status === 'Wachtrij') {
+                if (date('Y-m-d', strtotime($nieuwsbrief->verzenddatum)) == date('Y-m-d')) {
+                    $affected = DB::table('nieuwsbrieven')->whereDate('verzenddatum' , date('Y-m-d'))->where(['status'=> 'Wachtrij'])->update(['status' => 'Verzonden']);
+                    $email = new TestMail($nieuwsbrief);
+                    foreach ($nieuwsbrief->medewerkers()->get() as $medewerker) {
+                        Mail::to($medewerker->email)->send($email);
+                    }
+                }
+            }
     }
 }

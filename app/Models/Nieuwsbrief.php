@@ -25,4 +25,8 @@ class Nieuwsbrief extends Model
     {
         return Template::find($this->template_id);
     }
+    public function get_status()
+    {
+        return Nieuwsbrief::find($this->status);
+    }
 }

@@ -38,7 +38,6 @@ class NieuwsbriefController extends Controller
 
     public function edit($id)
     {
-//        dd($id);
         $medewerkers = Medewerker::all();
         $nieuwsbrieven = Nieuwsbrief::find($id);
         return view('pages.bewerknieuwsbrief', compact('nieuwsbrieven', 'medewerkers'));
@@ -53,11 +52,23 @@ class NieuwsbriefController extends Controller
         $nieuwsbrieven->email = $request->get('email');
         $nieuwsbrieven->inhoud = $request->get('inhoud');
         $nieuwsbrieven->leesbevestiging = $request->get('leesbevestiging');
-        $nieuwsbrieven->status = $request->get('status');
         $nieuwsbrieven->verzenddatum = $request->get('verzenddatum');
+        //Als er een verzenddatum is ingesteld en het niet 'Verzonden' is de status aanpassen naar 'Wachtrij'.
+        if (isset($nieuwsbrieven->verzenddatum)) {
+            if ($nieuwsbrieven->status != 'Verzonden') {
+                $nieuwsbrieven->status = 'Wachtrij';
+            }
+        }
         $nieuwsbrieven->medewerkers()->sync($request->input('medewerkers'));
         $nieuwsbrieven->save();
+        return response()->redirectToRoute('pages.overzicht');
+    }
 
+    public function updatemedewerker(Request $request, $id)
+    {
+        $nieuwsbrieven = Nieuwsbrief::find($id);
+        $nieuwsbrieven->medewerkers()->sync($request->input('medewerkers'));
+        $nieuwsbrieven->save();
         return response()->redirectToRoute('pages.overzicht');
     }
 
@@ -75,5 +86,4 @@ class NieuwsbriefController extends Controller
         DB::table("nieuwsbrieven")->get()->sum("id");
 
     }
-
 }
