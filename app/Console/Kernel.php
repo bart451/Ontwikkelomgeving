@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('email:medewerkers')->hourly();
+        $schedule->command('email:medewerkers')->everySixHours();
     }
 
     /**

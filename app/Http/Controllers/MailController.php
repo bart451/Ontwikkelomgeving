@@ -19,6 +19,8 @@ class MailController extends Controller
         foreach ($nieuwsbrief->medewerkers()->get() as $medewerker) {
             Mail::to($medewerker->email)->send($email);
         }
+        $nieuwsbrief->verzenddatum = date('Y-m-d');
+        $nieuwsbrief->verzondendatum = date('Y-m-d');
         $nieuwsbrief->status = "Verzonden";
         $nieuwsbrief->save();
 

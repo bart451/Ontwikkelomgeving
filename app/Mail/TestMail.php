@@ -31,7 +31,7 @@ class TestMail extends Mailable
 
     public function build()
     {
-        return $this->subject('TestMail  4')->markdown('pages.testmail')
+        return $this->subject('TestMail 4')->markdown('pages.testmail')
             ->with('nieuwsbrieven', $this->nieuwsbrief);
     }
 }

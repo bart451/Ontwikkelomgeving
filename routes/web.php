@@ -45,3 +45,7 @@ Route::get('/send-mail/{id}', [MailController::class, 'mailSend'])->name('pages.
 
 //Een preview laten zien van de nieuwsbrief
 Route::get('/preview-mail/{id}', [MailController::class, 'previewMail'])->name('pages.preview-mail');
+
+Route::fallback(function () {
+    return view('pages.blank');
+});

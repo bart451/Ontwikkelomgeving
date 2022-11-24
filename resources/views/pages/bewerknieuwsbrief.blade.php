@@ -9,9 +9,6 @@
                     <h1 class="h3 fw-bold mb-2">
                         Nieuwsbrief
                     </h1>
-                    <h2 class="fs-base lh-base fw-medium text-muted mb-0">
-                        test
-                    </h2>
                 </div>
                 <nav class="flex-shrink-0 mt-3 mt-sm-0 ms-sm-3" aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-alt">

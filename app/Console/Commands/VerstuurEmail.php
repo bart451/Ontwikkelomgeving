@@ -41,19 +41,21 @@ class VerstuurEmail extends Command
      *
      * @return int
      */
+
     //Command om nieuwsbrieven te versturen als hij op status wachtrij staat en de dag overheen komt met vandaag
     public function handle()
     {
-        $nieuwsbrieven = Nieuwsbrief::all();
-        foreach ($nieuwsbrieven as $nieuwsbrief)
-            if ($nieuwsbrief->status === 'Wachtrij') {
-                if (date('Y-m-d', strtotime($nieuwsbrief->verzenddatum)) == date('Y-m-d')) {
-                    $affected = DB::table('nieuwsbrieven')->whereDate('verzenddatum' , date('Y-m-d'))->where(['status'=> 'Wachtrij'])->update(['status' => 'Verzonden']);
-                    $email = new TestMail($nieuwsbrief);
-                    foreach ($nieuwsbrief->medewerkers()->get() as $medewerker) {
-                        Mail::to($medewerker->email)->send($email);
-                    }
+        $nieuwsbrieven = Nieuwsbrief::whereDate('verzenddatum', '<=', date('Y-m-d'))->where(['status' => 'wachtrij'])->get();
+        foreach ($nieuwsbrieven as $nieuwsbrief) {
+            $email = new TestMail($nieuwsbrief);
+            foreach ($nieuwsbrief->medewerkers()->get() as $medewerker) {
+                $verzendemail = Mail::to($medewerker->email)->send($email);
+                if ($verzendemail instanceof \Illuminate\Mail\SentMessage) {
+                    $affected = DB::table('nieuwsbrieven')->whereDate('verzenddatum', '<=', date('Y-m-d'))->where(['status' => 'wachtrij'])->update(['status' => 'Verzonden']);
+                } else {
+                    echo "Email is niet verzonden!";
                 }
             }
+        }
     }
 }

@@ -17,7 +17,7 @@ class NieuwsbriefController extends Controller
         return view('pages.overzicht', compact('nieuwsbrieven'), ['nieuwsbrieven' => $nieuwsbrieven]);
     }
 
-    //Funtie om naar de aanmaak pagina te gaan van de nieuwsbrief pagina.
+    //Functie om naar de aanmaak pagina te gaan van de nieuwsbrief pagina.
     public function create()
     {
         return view('pages.nieuwsbrief');
@@ -36,6 +36,7 @@ class NieuwsbriefController extends Controller
         return response()->redirectToRoute('pages.bewerknieuwsbrief', ['id' => $nieuwsbrieven->id]);
     }
 
+    //Functie voor het opvragen van medewerkers en de specifieke nieuwsbrief.
     public function edit($id)
     {
         $medewerkers = Medewerker::all();
@@ -55,18 +56,10 @@ class NieuwsbriefController extends Controller
         $nieuwsbrieven->verzenddatum = $request->get('verzenddatum');
         //Als er een verzenddatum is ingesteld en het niet 'Verzonden' is de status aanpassen naar 'Wachtrij'.
         if (isset($nieuwsbrieven->verzenddatum)) {
-            if ($nieuwsbrieven->status != 'Verzonden') {
-                $nieuwsbrieven->status = 'Wachtrij';
+            if ($nieuwsbrieven->status != 'verzonden') {
+                $nieuwsbrieven->status = 'wachtrij';
             }
         }
-        $nieuwsbrieven->medewerkers()->sync($request->input('medewerkers'));
-        $nieuwsbrieven->save();
-        return response()->redirectToRoute('pages.overzicht');
-    }
-
-    public function updatemedewerker(Request $request, $id)
-    {
-        $nieuwsbrieven = Nieuwsbrief::find($id);
         $nieuwsbrieven->medewerkers()->sync($request->input('medewerkers'));
         $nieuwsbrieven->save();
         return response()->redirectToRoute('pages.overzicht');
@@ -77,13 +70,6 @@ class NieuwsbriefController extends Controller
     {
         $nieuwsbrieven = Nieuwsbrief::find($id);
         $nieuwsbrieven->delete();
-
         return response()->redirectToRoute('pages.overzicht');
-    }
-
-    public function count()
-    {
-        DB::table("nieuwsbrieven")->get()->sum("id");
-
     }
 }

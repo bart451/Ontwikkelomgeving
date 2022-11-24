@@ -1,6 +1,5 @@
 @component('mail::message')
-{{--    {{ $nieuwsbrieven->naam }}--}}
-    Versturen naar {!! $nieuwsbrief->naam !!}
+    {!! $nieuwsbrief->naam !!}
     {!!$nieuwsbrief->inhoud !!}
     Verzonden door: {!! $nieuwsbrief->afzender!!}
     Afzender email: {!!$nieuwsbrief->email !!}
