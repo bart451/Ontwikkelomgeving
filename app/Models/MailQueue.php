@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MedewerkerNieuwsbrief extends Model
+class MailQueue extends Model
 {
     use HasFactory;
-
-    protected $table = 'medewerker_nieuwsbrief';
-
+    protected $table = 'mail_queue';
+    protected $guarded = [];
 }

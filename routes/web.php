@@ -41,7 +41,11 @@ Route::get('/verwijdernieuwsbrief/{id}', [NieuwsbriefController::class, 'destroy
 Route::get('/pages/medewerkersoverzicht', [MedewerkerNieuwsbriefController::class, 'index'])->name('pages.medewerkersoverzicht');
 
 //Versturen van mails
-Route::get('/send-mail/{id}', [MailController::class, 'mailSend'])->name('pages.send-mail');
+//Route::get('/send-mail/{id}', [MailController::class, 'mailSend'])->name('pages.send-mail');
+//Route::get('/send-test-mail/{id}', [MailController::class, 'TestMailSend'])->name('pages.send-test-mail');
+
+//Inser
+Route::get('/send-mail/{id}', [NieuwsbriefController::class, 'mailQueue'])->name('pages.mailqueue');
 
 //Een preview laten zien van de nieuwsbrief
 Route::get('/preview-mail/{id}', [MailController::class, 'previewMail'])->name('pages.preview-mail');

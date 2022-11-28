@@ -12,22 +12,39 @@ use Symfony\Component\HttpFoundation\Response;
 class MailController extends Controller
 {
     //Functie om een mail te verzenden
-    public function mailSend(Request $request, $id)
-    {
-        $nieuwsbrief = Nieuwsbrief::find($id);
-        $email = new TestMail($nieuwsbrief);
-        foreach ($nieuwsbrief->medewerkers()->get() as $medewerker) {
-            Mail::to($medewerker->email)->send($email);
-        }
-        $nieuwsbrief->verzenddatum = date('Y-m-d');
-        $nieuwsbrief->verzondendatum = date('Y-m-d');
-        $nieuwsbrief->status = "Verzonden";
-        $nieuwsbrief->save();
-
-        return response()->json([
-            'message' => 'Mail has sent.'
-        ], Response::HTTP_OK);
-    }
+//    public function mailSend(Request $request, $id)
+//    {
+//        $nieuwsbrief = Nieuwsbrief::find($id);
+//        $email = new TestMail($nieuwsbrief);
+//        foreach ($nieuwsbrief->medewerkers()->get() as $medewerker) {
+//            Mail::to($medewerker->email)->send($email);
+//        }
+//        $nieuwsbrief->verzenddatum = date('Y-m-d');
+//        $nieuwsbrief->verzondendatum = date('Y-m-d');
+//        $nieuwsbrief->status = "Verzonden";
+//        $nieuwsbrief->save();
+//
+//        return response()->json([
+//            'message' => 'Mail has sent.'
+//        ], Response::HTTP_OK);
+//    }
+//
+//    public function TestMailSend(Request $request, $id)
+//    {
+//        $nieuwsbrief = Nieuwsbrief::find($id);
+//        $nieuwsbrief->verzenddatum = date('Y-m-d');
+//        $nieuwsbrief->verzondendatum = date('Y-m-d');
+//        $nieuwsbrief->status = "Verzonden";
+//        $nieuwsbrief->save();
+//        $email = new TestMail($nieuwsbrief);
+//        foreach ($nieuwsbrief->users()->get() as $users) {
+//            Mail::to($users->email)->send($email);
+//        }
+//
+//        return response()->json([
+//            'message' => 'Mail has sent.'
+//        ], Response::HTTP_OK);
+//    }
 
     //Functie om een preview van een nieuwsbrief te laten zien
     public function previewMail(Request $request, $id)

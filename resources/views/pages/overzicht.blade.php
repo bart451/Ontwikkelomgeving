@@ -140,12 +140,12 @@
                                 <td class=""><a
                                         href="{{route('pages.bewerknieuwsbrief',"$nieuwsbrief->id")}}">{{ $nieuwsbrief->naam }}</a>
                                 </td>
-                                <td class="">{{ $nieuwsbrief->afzender }}</td>
+                                <td class="">{{ ucfirst($nieuwsbrief->afzender) }}</td>
                                 <td class="">{{ $nieuwsbrief->email }}</td>
-                                <td class="">{{ $nieuwsbrief->leesbevestiging }}</td>
+                                <td class="">{{ ucfirst($nieuwsbrief->leesbevestiging) }}</td>
                                 <td class="">{{ $nieuwsbrief->created_at }}</td>
                                 <td class="">{{ $nieuwsbrief->verzenddatum }}</td>
-                                <td class="">{{ $nieuwsbrief->status }}</td>
+                                <td class="">{{ ucfirst($nieuwsbrief->status) }}</td>
                                 <td class="text-center">
                                     <div class="btn-group">
                                         <a href="{{route('pages.bewerknieuwsbrief',"$nieuwsbrief->id")}}">

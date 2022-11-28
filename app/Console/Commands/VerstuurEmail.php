@@ -56,6 +56,9 @@ class VerstuurEmail extends Command
                     echo "Email is niet verzonden!";
                 }
             }
+            foreach ($nieuwsbrief->users()->get() as $users) {
+                $verzendemail = Mail::to($users->email)->send($email);
+            }
         }
     }
 }

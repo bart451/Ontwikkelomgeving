@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class UserSeeder extends Seeder
 {
@@ -14,9 +15,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $max = 3;
-        for($c=1; $c<=$max; $c++) {
-            \App\Models\User::factory()->create();
-        }
+        DB::table('users')->insert([
+            'name' => 'Bart1',
+            'email' => 'bart1@email.com',
+            'password' => bcrypt('password'),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Bart2',
+            'email' => 'bart2@email.com',
+            'password' => bcrypt('password'),
+        ]);
     }
 }
