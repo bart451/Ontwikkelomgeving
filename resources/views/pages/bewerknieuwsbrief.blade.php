@@ -105,7 +105,7 @@
                                 <select class="form-select" id="afzender" name="afzender"
                                         value="{{ $nieuwsbrieven->afzender }}">
                                     @foreach ($users as $user)
-                                        <option value="{{$user->name}}">{{$user->name}}</option>
+                                        <option selected value="{{$user->name}}">{{$user->name}}</option>
                                     @endforeach
                                 </select>
                                 <label for="example-select-floating">Afzender</label>
@@ -193,13 +193,20 @@
                         <a class="dropdown-item" href="{{route('pages.preview-mail',[ 'id'=> $nieuwsbrieven->id ])}}">
                             <i class="far fa-fw fa-bell me-1"></i> Preview in browser
                         </a>
-                        <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#modal-block-normal"><i
-                                class="far fa-fw fa-envelope me-1"></i>Versturen naar gebruikers
+
+                        <a href="{{route('pages.previewmailqueue',[ 'id'=> $nieuwsbrieven->id ])}}" class="dropdown-item"
+                           data-bs-toggle="modal" data-bs-target="#modal-block-normal"><i
+                                class="far fa-fw fa-envelope me-1"></i>Versturen naar mij
                         </a>
                     </div>
                     <a href="{{route('pages.mailqueue',[ 'id'=> $nieuwsbrieven->id ])}}">
                         <button type="button" class="btn btn-primary"><i class="far fa-fw fa-envelope me-1"></i>
                             Verstuur Nieuwsbrief
+                        </button>
+                    </a>
+                    <a href="{{route('pages.previewmailqueue',[ 'id'=> $nieuwsbrieven->id ])}}">
+                        <button type="button" class="btn btn-primary"><i class="far fa-fw fa-envelope me-1"></i>
+                            Versturen naar mij
                         </button>
                     </a>
                 </div>
@@ -218,13 +225,6 @@
                                     </div>
                                 </div>
                                 <div class="block-content fs-sm">
-                                    <select class="form-select" id="users" name="users[]"
-                                            aria-label="Floating label select example" size="5" multiple>
-                                        @foreach ($users as $user)
-                                            <option value="{{$user->id}}"
-                                                    @if ($nieuwsbrieven->users()->where('user_id', '=', $user->id)->count() > 0 ) selected @endif>{{$user->name}}</option>
-                                        @endforeach
-                                    </select>
                                 </div>
                                 <div class="block-content block-content-full text-end bg-body">
                                     <button type="button" class="btn-block-option" data-bs-dismiss="modal"

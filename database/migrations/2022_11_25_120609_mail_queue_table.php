@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->integer('mail_id')->nullable();;
             $table->string('mail_identifier')->nullable();;
-            $table->text('to_address')->nullable();;
+            $table->text('to_address');
             $table->integer('from_user_id')->nullable();;
             $table->string('afzender')->nullable();;
             $table->string('from_address');
@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->datetime('created_at');
             $table->string('create_by')->nullable();;
             $table->longtext('values')->nullable();;
-            $table->enum('status', ['Nieuw', 'Wachtrij', 'Verzonden']);
+            $table->enum('status', ['nieuw', 'wachtrij', 'verzonden']);
             $table->datetime('verzenddatum')->nullable();;
             $table->string('naam')->nullable();;
             $table->longtext('inhoud')->nullable();;

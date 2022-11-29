@@ -46,6 +46,7 @@ Route::get('/pages/medewerkersoverzicht', [MedewerkerNieuwsbriefController::clas
 
 //Inser
 Route::get('/send-mail/{id}', [NieuwsbriefController::class, 'mailQueue'])->name('pages.mailqueue');
+Route::get('/send-mail-p/{id}', [NieuwsbriefController::class, 'UserMailQueue'])->name('pages.previewmailqueue');
 
 //Een preview laten zien van de nieuwsbrief
 Route::get('/preview-mail/{id}', [MailController::class, 'previewMail'])->name('pages.preview-mail');

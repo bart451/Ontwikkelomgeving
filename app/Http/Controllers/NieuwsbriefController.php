@@ -60,16 +60,13 @@ class NieuwsbriefController extends Controller
         $nieuwsbrieven->verzenddatum = $request->get('verzenddatum');
         //Als er een verzenddatum is ingesteld en het niet 'Verzonden' is de status aanpassen naar 'Wachtrij'.
         $nieuwsbrieven->medewerkers()->sync($request->input('medewerkers'));
-        $nieuwsbrieven->users()->sync($request->input('users'));
         $nieuwsbrieven->save();
-
         return response()->redirectToRoute('pages.overzicht');
     }
 
     public function mailQueue(Request $request, $id)
     {
         $nieuwsbrieven = Nieuwsbrief::find($id);
-        $users = User::find($id);
         if (isset($nieuwsbrieven->verzenddatum)) {
             if ($nieuwsbrieven->status != 'verzonden') {
                 $nieuwsbrieven->status = 'wachtrij';
@@ -80,30 +77,33 @@ class NieuwsbriefController extends Controller
             if ($nieuwsbrief->where('nieuwsbrief_id', '=', $nieuwsbrieven->id)) {
                 $queueMail = MailQueue::create([
                     'naam' => $nieuwsbrieven->naam,
-                    'afzender' => $users->name,
+                    'afzender' => $nieuwsbrieven->name, //Aanpassen
                     'inhoud' => $nieuwsbrieven->inhoud,
                     'verzenddatum' => $nieuwsbrieven->verzenddatum,
                     'status' => 'wachtrij',
                     'leesbevestiging' => $nieuwsbrieven->leesbevestiging,
-                    'from_address' => $users->email, //Aanpassen
+                    'from_address' => $nieuwsbrieven->email, //Aanpassen
+                    'to_address' => $nieuwsbrief->email,
                 ]);
             }
         }
+        return response()->redirectToRoute('pages.overzicht');
+    }
 
-        //Opslaan van de queue mail voor gebruikers
-        foreach ($nieuwsbrieven->users()->get() as $previewNieuwsbrief) {
-            if ($previewNieuwsbrief->where('nieuwsbrief_id', '=', $nieuwsbrieven->id)) {
-                $queueMail = MailQueue::create([
-                    'naam' => $nieuwsbrieven->naam,
-                    'afzender' => $nieuwsbrieven->afzender,
-                    'inhoud' => $nieuwsbrieven->inhoud,
-                    'verzenddatum' => $nieuwsbrieven->verzenddatum,
-                    'status' => $nieuwsbrieven->status,
-                    'leesbevestiging' => $nieuwsbrieven->leesbevestiging,
-                    'from_address' => $previewNieuwsbrief->email, //Aanpassen
-                ]);
-            }
-        }
+    public function UserMailQueue(Request $request, $id)
+    {
+        $nieuwsbrieven = Nieuwsbrief::find($id);
+        $users = User::find($id);
+        $queueMail = MailQueue::create([
+            'naam' => $nieuwsbrieven->naam,
+            'afzender' => $nieuwsbrieven->afzender,
+            'inhoud' => $nieuwsbrieven->inhoud,
+            'verzenddatum' => $nieuwsbrieven->verzenddatum,
+            'status' => 'wachtrij',
+            'leesbevestiging' => $nieuwsbrieven->leesbevestiging,
+            'from_address' => $users->email,
+            'to_address' => $users->email,
+        ]);
         return response()->redirectToRoute('pages.overzicht');
     }
 

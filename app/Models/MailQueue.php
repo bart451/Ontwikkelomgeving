@@ -10,4 +10,5 @@ class MailQueue extends Model
     use HasFactory;
     protected $table = 'mail_queue';
     protected $guarded = [];
+
 }
